@@ -1,8 +1,6 @@
 "use client"
 
 import { ProductCard } from "@/components/product-card"
-import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
 
 const products = [
   {
@@ -60,10 +58,10 @@ const products = [
 
 export function ProductsSection() {
   return (
-    <section className="py-20 lg:py-32" id="produtos">
+    <section id="produtos" className="py-20 lg:py-32">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 animate-fade-up">
           <div>
             <p className="text-muted-foreground font-mono text-sm tracking-widest uppercase mb-2">
               Coleção em Destaque
@@ -72,25 +70,26 @@ export function ProductsSection() {
               Produtos Premium
             </h2>
           </div>
-          <Button variant="ghost" className="text-muted-foreground hover:text-foreground group self-start lg:self-auto">
-            Ver Todos os Produtos
-            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Button>
         </div>
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {products.map((product) => (
-            <ProductCard
+          {products.map((product, index) => (
+            <div
               key={product.id}
-              id={product.id}
-              name={product.name}
-              brand={product.brand}
-              price={product.price}
-              images={product.images}
-              colors={product.colors}
-              isNew={product.isNew}
-            />
+              className="animate-fade-up"
+              style={{ animationDelay: `${0.1 * (index + 1)}s` }}
+            >
+              <ProductCard
+                id={product.id}
+                name={product.name}
+                brand={product.brand}
+                price={product.price}
+                images={product.images}
+                colors={product.colors}
+                isNew={product.isNew}
+              />
+            </div>
           ))}
         </div>
       </div>

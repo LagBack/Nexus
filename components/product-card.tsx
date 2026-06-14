@@ -94,7 +94,7 @@ export function ProductCard({
             src={currentImage.url}
             alt={`${name} - ${currentImage.angle}`}
             fill
-            className="object-contain transition-opacity duration-300"
+            className="object-contain transition-all duration-400"
           />
         </div>
 
