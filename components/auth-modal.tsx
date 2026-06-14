@@ -22,12 +22,20 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const { login, register } = useAuth()
+  const { login, register, validateEmail } = useAuth()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError("")
     setIsLoading(true)
+
+    // Valida o e-mail (apenas webmail .com, com sigla de pais opcional)
+    const emailError = validateEmail(email)
+    if (emailError) {
+      setError(emailError)
+      setIsLoading(false)
+      return
+    }
 
     try {
       let success: boolean
